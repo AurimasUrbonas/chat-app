@@ -3,7 +3,7 @@
     <head>
         <title>Chat App</title>
         <link rel="icon" href="/img/favicon.png">
-        <link rel="stylesheet" href="/css/styles.min.css">
+        <link rel="stylesheet" href="/css/styles.css">
     </head>
     <body>
         <div class="centered-form">
@@ -12,11 +12,33 @@
                 <form action="/chat.html">
                     <label>Display name</label>
                     <input type="text" name="username" placeholder="Display name" required>
-                    <label>Room</label>
-                    <input type="text" name="room" placeholder="Room" required>
+                    <label>Enter a room name to join</label>
+                    <input id="joinFormRoomSelect" type="text" name="room" placeholder="Room" required>
                     <button>Join</button>
                 </form>
             </div>
+
+            <div class="chat-room-list">
+                <form action="/chat.html">
+                    <label name="room">Or select an active chat room to join</label>
+                    <select name="room" id="formSelect" required>
+                        
+                    </select>
+                    <label>Display name</label>
+                    <input type="text" name="username" placeholder="Display name" required>
+                    <button id="selectFormButton">Join</button>
+                </form>
+            </div>
         </div>
+
+        <script id="room-list-template" type="text/html"> 
+            {{#rooms}}
+                <option>{{.}}</option>
+            {{/rooms}}
+        </script>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/rooms.js"></script>
     </body>
 </html>
